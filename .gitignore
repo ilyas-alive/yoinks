@@ -3,3 +3,7 @@ dist/
 *.log
 .DS_Store
 .claude/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
