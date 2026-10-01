@@ -75,6 +75,33 @@ npm run typecheck
 To try it as a global command without publishing: `npm link`, then run
 `yoinks` anywhere.
 
+## Android (APK)
+
+yoinks now includes an Android app project in `/home/runner/work/yoinks/yoinks/android`.
+
+- Native phone UI for: paste URL → pick format → track progress → done/error
+- First run downloads `yt-dlp` for device architecture
+- If `ffmpeg` is unavailable, the app falls back to formats that do not require merge/conversion
+- Output directory is app-scoped external downloads:
+  `/storage/emulated/0/Android/data/com.yoinks.app/files/Download/yoinks/`
+
+See `/home/runner/work/yoinks/yoinks/docs/android-scope.md` for support scope and acceptance criteria.
+
+### Build APK in GitHub Actions
+
+Workflow file: `/home/runner/work/yoinks/yoinks/.github/workflows/android-apk.yml`
+
+- Triggers on push, pull request, and manual workflow dispatch
+- Always uploads `yoinks-debug-apk` artifact
+- Optionally uploads `yoinks-release-apk` when signing secrets are present
+
+Required secrets for signed release:
+
+- `ANDROID_KEYSTORE_BASE64`
+- `ANDROID_KEYSTORE_PASSWORD`
+- `ANDROID_KEY_ALIAS`
+- `ANDROID_KEY_PASSWORD`
+
 ## Roadmap
 
 - [ ] `--best` / `--mp3` flags to skip the picker (scriptable mode)
